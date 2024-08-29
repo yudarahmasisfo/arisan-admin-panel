@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Routing\Controllers\Middleware;
 
 class ProductController extends Controller
@@ -28,18 +29,19 @@ class ProductController extends Controller
     * Display a listing of the resource.
     * @return \Illuminate\Http\Response
     */
-   public function index()
-   {
-       $products = Product::latest()->paginate(50);
-       return view('products.index', compact('products'));
-   }
+    public function index()
+    {
+       $products = Product::latest()->paginate(1);
+        return view('products.index', compact('products'));
+    }
+
     /**
     * Show the form for creating a new resource.
     * @return \Illuminate\Http\Response
     */
    public function create()
    {
-       return view('products.create');
+       return view('products.createproduct');
    }
     /**
     * Store a newly created resource in storage.
@@ -74,7 +76,7 @@ class ProductController extends Controller
     */
    public function edit(Product $product)
    {
-       return view('products.edit', compact('product'));
+       return view('products.editproduct', compact('product'));
    }
 /**
     * Update the specified resource in storage.
